@@ -1,0 +1,20 @@
+/** Stylus Styles */
+
+@require '../../node_modules/vuetify/src/stylus/settings/_colors'
+
+$theme := {
+  primary: $blue.lighten-1
+  accent: $blue.accent-2
+  secondary: $grey.lighten-1
+  info: $blue.lighten-1
+  warning: $amber.darken-2
+  error: $red.accent-4
+  success: $green.lighten-2
+}
+
+// Available variables https://github.com/vuetifyjs/vuetify/blob/master/src/stylus/settings/_variables.styl
+
+@import '../../node_modules/vuetify/src/stylus/main'
+
+// Font library and icon pack
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons')
