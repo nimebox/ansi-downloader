@@ -2,7 +2,6 @@
 dist/electron/*
 dist/web/*
 dist/main/*
-!dist/main/main.js
 build/*
 !build/icons
 node_modules/
