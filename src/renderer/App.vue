@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <v-system-bar window dark class="windowBar">
+    <v-system-bar fixed window dark class="windowBar">
+      <div>ANSI DOWNLOADER</div>
       <v-spacer></v-spacer>
       <v-btn small flat @click="minimize" class="btns">
         <v-icon>remove</v-icon>
