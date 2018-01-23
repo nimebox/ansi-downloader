@@ -44,8 +44,8 @@
                         </v-card-text>
                       </v-slide-y-transition>
                     </v-card>
-                    <v-list class="elevation-1" v-show="done">
-                      <v-list-tile v-for="(item, key) in animes" :key="key">
+                    <v-list class="elevation-1" v-show="done" v-for="(item, key) in animes" :key="key">
+                      <v-list-tile>
                         <v-list-tile-content>
                           <v-list-tile-title v-text="item.title"></v-list-tile-title>
                         </v-list-tile-content>
@@ -111,7 +111,7 @@
     methods: {
       search (title, select) {
         if (this.$refs.form.validate()) {
-          animesub.search(title, select, this.page - 1).then((data) => {
+          animesub.search(title, select, this.page - 1).then(data => {
             if (data.json.length === 0) {
               console.log('array is empty')
               this.done = false
@@ -125,7 +125,7 @@
               this.done = true
               this.pages = data.pages + 1
             }
-          }).catch((err) => {
+          }).catch(err => {
             console.log(err)
             this.done = false
             this.info = true
@@ -143,7 +143,7 @@
             name: 'zip',
             extensions: ['zip']
           }]
-        }, (fileName) => {
+        }, fileName => {
           if (fileName === undefined) {
             console.log('File not saved')
             return
@@ -168,14 +168,14 @@
       },
       malInfo (name) {
         mal.getInfoFromName(name)
-          .then((data) => {
+          .then(data => {
             console.log(data)
             this.mal.title = data.title
             this.mal.picture = data.picture
             this.mal.synopsis = data.synopsis
             this.mal.aired = data.aired
             this.mal.episodes = data.episodes
-          }).catch((err) => console.log(err))
+          }).catch(err => console.log(err))
       }
     }
   }

@@ -14,7 +14,7 @@
       </v-btn>
     </v-system-bar>
     <main>
-      <v-container fluid>
+      <v-container fluid style="max-height: 700px" class="scroll-y">
         <v-slide-y-transition mode="out-in">
           <router-view></router-view>
         </v-slide-y-transition>
@@ -22,7 +22,7 @@
     </main>
     <v-footer fixed>
       <v-spacer></v-spacer>
-      <div>© {{ new Date().getFullYear() }}</div>
+      <div>&copy; {{ new Date().getFullYear() }}</div>
     </v-footer>
   </v-app>
 </template>
@@ -56,32 +56,33 @@
 
 <style lang="stylus">
     @import './stylus/main.styl'
+    html { overflow-y: hidden }
     .windowBar {
       -webkit-app-region: drag
     }
     .btns {
       -webkit-app-region: no-drag
     }
-    ::-webkit-scrollbar {
-        width: 15px !important
-        height: 10px !important
-        background: #424242 !important
-        border: 1px solid #252525 !important
-    }
-    ::-webkit-scrollbar-button {
-        display: none !important
-    }
-    ::-webkit-scrollbar-thumb,
-    ::-webkit-scrollbar-track {
-        border: 0 !important
-        box-shadow: none !important
-    }
-    ::-webkit-scrollbar-thumb {
-        min-height: 28px !important
-        background: #333 !important
-    }
-    ::-webkit-scrollbar-corner,
-    ::-webkit-scrollbar-track {
-        background: #212121 !important
-    }
+    // ::-webkit-scrollbar {
+    //     width: 15px !important
+    //     height: 10px !important
+    //     background: #424242 !important
+    //     border: 1px solid #252525 !important
+    // }
+    // ::-webkit-scrollbar-button {
+    //     display: none !important
+    // }
+    // ::-webkit-scrollbar-thumb,
+    // ::-webkit-scrollbar-track {
+    //     border: 0 !important
+    //     box-shadow: none !important
+    // }
+    // ::-webkit-scrollbar-thumb {
+    //     min-height: 28px !important
+    //     background: #333 !important
+    // }
+    // ::-webkit-scrollbar-corner,
+    // ::-webkit-scrollbar-track {
+    //     background: #212121 !important
+    // }
 </style>
