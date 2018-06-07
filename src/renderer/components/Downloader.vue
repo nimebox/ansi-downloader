@@ -44,8 +44,8 @@
                         </v-card-text>
                       </v-slide-y-transition>
                     </v-card>
-                    <v-list class="elevation-1" v-show="done" v-for="(item, key) in animes" :key="key">
-                      <v-list-tile>
+                    <v-list class="elevation-1" v-show="done">
+                      <v-list-tile  v-for="(item, key) in animes" :key="key">
                         <v-list-tile-content>
                           <v-list-tile-title v-text="item.title"></v-list-tile-title>
                         </v-list-tile-content>
@@ -76,79 +76,81 @@
 </template>
 
 <script>
-  import animesub from 'animesub-api'
-  import mal from 'mal-scraper'
-  export default {
-    name: 'downloader',
-    data () {
-      return {
+import animesub from 'animesub-api'
+import mal from 'mal-scraper'
+export default {
+  name: 'downloader',
+  data () {
+    return {
+      title: '',
+      animes: [],
+      types: ['org', 'pl', 'en'],
+      valid: true,
+      select: 'org',
+      done: false,
+      info: false,
+      alertType: 'error',
+      alertMsg: '',
+      alertIcon: 'info',
+      page: 1,
+      pages: 0,
+      mal: {
         title: '',
-        animes: [],
-        types: [
-          'org',
-          'pl',
-          'en'
-        ],
-        valid: true,
-        select: 'org',
-        done: false,
-        info: false,
-        alertType: 'error',
-        alertMsg: '',
-        alertIcon: 'info',
-        page: 1,
-        pages: 0,
-        mal: {
-          title: '',
-          synopsis: '',
-          picture: '',
-          aired: '?',
-          episodes: '?'
-        },
-        show: false
-      }
-    },
-    methods: {
-      search (title, select) {
-        if (this.$refs.form.validate()) {
-          animesub.search(title, select, this.page - 1).then(data => {
-            if (data.json.length === 0) {
-              console.log('array is empty')
-              this.done = false
-              this.info = true
-              this.alertType = 'info'
-              this.alertIcon = 'info'
-              this.alertMsg = 'Brak wyników wyszukiwania.'
-            } else {
-              console.log(data)
-              this.animes = data.json
-              this.done = true
-              this.pages = data.pages + 1
-            }
-          }).catch(err => {
-            console.log(err)
+        synopsis: '',
+        picture: '',
+        aired: '?',
+        episodes: '?'
+      },
+      show: false
+    }
+  },
+  methods: {
+    async search (title, select) {
+      if (this.$refs.form.validate()) {
+        try {
+          const data = await animesub.search(title, select, this.page - 1)
+          if (data.json.length === 0) {
+            console.log('array is empty')
             this.done = false
             this.info = true
-            this.alertType = 'error'
-            this.alertIcon = 'warning'
-            this.alertMsg = err
-          })
+            this.alertType = 'info'
+            this.alertIcon = 'info'
+            this.alertMsg = 'Brak wyników wyszukiwania.'
+          } else {
+            console.log(data)
+            this.animes = data.json
+            this.done = true
+            this.pages = data.pages + 1
+          }
+        } catch (err) {
+          console.log(err)
+          this.done = false
+          this.info = true
+          this.alertType = 'error'
+          this.alertIcon = 'warning'
+          this.alertMsg = err
         }
-      },
-      download (id, sh, title) {
-        this.$electron.remote.dialog.showSaveDialog({
+      }
+    },
+    download (id, sh, title) {
+      this.$electron.remote.dialog.showSaveDialog(
+        {
           title: 'Zapisz plik',
           defaultPath: `${title}_${id}.zip`,
-          filters: [{
-            name: 'zip',
-            extensions: ['zip']
-          }]
-        }, fileName => {
+          filters: [
+            {
+              name: 'zip',
+              extensions: ['zip']
+            }
+          ]
+        },
+        fileName => {
           if (fileName === undefined) {
             console.log('File not saved')
             return
           }
-          animesub.download(id, sh, fileName)
+          animesub
+            .download(id, sh, fileName)
             .then(log => {
               console.log(log)
               this.info = true
@@ -164,23 +166,30 @@
               this.alertMsg = 'Błąd pobierania!'
             })
           console.log(`id ${id} sh ${sh}`)
-        })
-      },
-      malInfo (name) {
-        mal.getInfoFromName(name)
-          .then(data => {
-            console.log(data)
-            this.mal.title = data.title
-            this.mal.picture = data.picture
-            this.mal.synopsis = data.synopsis
-            this.mal.aired = data.aired
-            this.mal.episodes = data.episodes
-          }).catch(err => console.log(err))
+        }
+      )
+    },
+    async malInfo (name) {
+      try {
+        const data = await mal.getInfoFromName(name)
+        console.log(data)
+        this.mal.title = data.title
+        this.mal.picture = data.picture
+        this.mal.synopsis = data.synopsis
+        this.mal.aired = data.aired
+        this.mal.episodes = data.episodes
+      } catch (err) {
+        console.log(err)
       }
     }
+    // watch: {
+    //   page: {
+    //     handler: function () {
+    //       this.search(this.title, this.select)
+    //     }
+    //   },
+    //   deep: true
+    // }
   }
+}
 </script>
-
-<style scoped>
-
-</style>
