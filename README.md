@@ -1,4 +1,4 @@
-# ansi-downloader
+# ansi-downloader [![Build Status](https://travis-ci.org/Nimebox/ansi-downloader.svg?branch=master)](https://travis-ci.org/Nimebox/ansi-downloader)
 
 > Download subtitles from animesub.info easy way
 
