@@ -4,11 +4,14 @@
       <v-form v-model="valid" ref="form" lazy-validation>
         <v-text-field label="Szukaj napisów" v-model="title" :rules="titleRules" required></v-text-field>
         <v-select label="Jezyk tytułu" v-model="selected" :items="types" item-text="text" item-value="value" :rules="[v => !!v || 'Język tytułu jest wymagany']" required></v-select>
-        <v-btn @click.enter="search(title, selected)" outline color="primary" :disabled="!valid">Szukaj</v-btn>
+        <v-btn @click.enter="search(title, selected); info(title, selected)" outline color="primary" :disabled="!valid">Szukaj</v-btn>
       </v-form>
       <v-progress-linear v-if="loading || malLoading" :indeterminate="loading || malLoading" :active="loading || malLoading" />
       <info v-if="malData && !malLoading" :mal="malData"></info>
-      <download v-if="data && !loading" :animes="data.json"></download>
+      <div v-if="data && !loading">
+        <download :animes="data.json"></download>
+        <v-pagination v-model="page" :length="data.pages" :total-visible="10" @input="search(title, selected)"></v-pagination>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -53,6 +56,10 @@ export default {
     async search (title, selected) {
       if (this.$refs.form.validate()) {
         await this.$store.dispatch(`search/${searchActions.FETCH_BY_NAME}`, { title: title, selected: selected, page: this.page - 1 })
+      }
+    },
+    async info (title) {
+      if (this.$refs.form.validate()) {
         await this.$store.dispatch(`info/${infoActions.FETCH_BY_NAME}`, title)
       }
     }

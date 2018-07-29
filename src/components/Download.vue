@@ -15,6 +15,7 @@
     </v-list-tile>
   </v-list>
 </template>
+
 <script>
 import * as actions from '../store/modules/download/actions.types'
 import { mapGetters } from 'vuex'

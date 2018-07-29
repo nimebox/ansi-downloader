@@ -10,7 +10,9 @@
     </v-content>
     <v-footer fixed>
       <v-spacer></v-spacer>
-      <div>&copy; {{ new Date().getFullYear() }}</div>
+      <v-card flat class="footer">&copy;{{ new Date().getFullYear() }} —
+        <a @click="$electron.shell.openExternal('https://github.com/xdk78')">xdk78</a>
+      </v-card>
     </v-footer>
   </v-app>
 </template>
@@ -32,5 +34,8 @@ body {
   max-height: calc(100vh - 10vh);
   overflow-y: auto;
   overflow-x: auto;
+}
+.footer {
+  padding: 14px;
 }
 </style>
