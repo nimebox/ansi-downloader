@@ -1169,16 +1169,16 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-animesub-api@^0.8.2:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/animesub-api/-/animesub-api-0.8.2.tgz#2426c595e6402d274172f422371c9422a2a4c4b8"
+animesub-api@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/animesub-api/-/animesub-api-0.9.0.tgz#f385dcbae16172e12395c857fa4d6ea297905e8f"
   dependencies:
     "@3846masa/axios-cookiejar-support" "^0.3.5"
     axios "^0.18.0"
     grabbi "^0.1.1"
     lodash "^4.17.10"
     qs "^6.5.2"
-    tough-cookie "^2.3.4"
+    tough-cookie "^2.4.3"
 
 ansi-align@^2.0.0:
   version "2.0.0"
@@ -9331,7 +9331,7 @@ tough-cookie@2.3.4, tough-cookie@~2.3.3:
   dependencies:
     punycode "^1.4.1"
 
-tough-cookie@>=2.3.3, tough-cookie@^2.3.3, tough-cookie@^2.3.4:
+tough-cookie@>=2.3.3, tough-cookie@^2.3.3, tough-cookie@^2.4.3:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.4.3.tgz#53f36da3f47783b0925afa06ff9f3b165280f781"
   dependencies:

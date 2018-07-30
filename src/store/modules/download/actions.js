@@ -1,3 +1,4 @@
+import fs from 'fs'
 import animesub from 'animesub-api'
 import * as action from './actions.types'
 const { dialog } = require('electron').remote
@@ -5,7 +6,6 @@ export default {
   async [action.DOWNLOAD] (store, { id, sh, title }) {
     store.commit(action.SET_LOADING, true)
     try {
-      let logs = null
       dialog.showSaveDialog(
         {
           title: 'Zapisz plik',
@@ -17,16 +17,21 @@ export default {
             }
           ]
         },
-        async (fileName) => {
-          if (!fileName) {
-            console.log('File not saved')
+        async (filename) => {
+          if (!filename) {
+            console.log('File not saved by user')
+          } else {
+            const data = await animesub.download(id, sh)
+            fs.writeFile(filename, data, (err) => {
+              if (err) {
+                throw new Error(err)
+              } else {
+                console.log('File succesfully saved by user')
+              }
+            })
           }
-          const logss = await animesub.download(id, sh, fileName)
-          logs = logss
         }
       )
-      console.log(logs)
-      store.commit(action.DOWNLOAD, logs)
     } catch (err) {
       console.error(err)
       store.commit(action.SET_ERROR, err.message)

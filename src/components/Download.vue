@@ -29,7 +29,6 @@ export default {
   },
   computed: {
     ...mapGetters({
-      logs: 'download/logs',
       loading: 'download/loading',
       error: 'download/error'
     })

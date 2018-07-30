@@ -15,7 +15,7 @@
     "serve:electron": "vue-cli-service serve:electron"
   },
   "dependencies": {
-    "animesub-api": "^0.8.2",
+    "animesub-api": "^0.9.0",
     "axios": "^0.18.0",
     "mal-scraper": "2.4.1",
     "vue": "^2.5.16",
