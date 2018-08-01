@@ -5,6 +5,7 @@ const { dialog } = require('electron').remote
 export default {
   async [action.DOWNLOAD] (store, { id, sh, title }) {
     store.commit(action.SET_LOADING, true)
+    store.commit(action.SET_DOWLOADED, false)
     try {
       dialog.showSaveDialog(
         {
@@ -19,6 +20,7 @@ export default {
         },
         async (filename) => {
           if (!filename) {
+            store.commit(action.SET_DOWLOADED, false)
             console.log('File not saved by user')
           } else {
             const data = await animesub.download(id, sh)
@@ -26,6 +28,7 @@ export default {
               if (err) {
                 throw new Error(err)
               } else {
+                store.commit(action.SET_DOWLOADED, true)
                 console.log('File succesfully saved by user')
               }
             })

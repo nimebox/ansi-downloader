@@ -8,7 +8,7 @@
 # install dependencies
 yarn install
 
-# serve with hot reload at localhost:9080
+# serve electron application with hot reload 
 yarn run dev
 
 # build electron application for production

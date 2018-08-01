@@ -1,19 +1,29 @@
 <template>
-  <v-list class="elevation-1">
-    <v-list-tile v-for="(item, key) in animes" :key="key">
-      <v-list-tile-content>
-        <v-list-tile-title v-text="item.title"></v-list-tile-title>
-      </v-list-tile-content>
-      <v-list-tile-action>
-        <v-tooltip top>
-          <v-btn fab small class="elevation-0" slot="activator" @click="download(item.id, item.sh, item.title)">
-            <v-icon color="primary">get_app</v-icon>
-          </v-btn>
-          <span>Pobierz napisy</span>
-        </v-tooltip>
-      </v-list-tile-action>
-    </v-list-tile>
-  </v-list>
+  <div>
+    <v-list class="elevation-1">
+      <v-list-tile v-for="(item, key) in animes" :key="key">
+        <v-list-tile-content>
+          <v-list-tile-title v-text="item.title"></v-list-tile-title>
+        </v-list-tile-content>
+        <v-list-tile-action>
+          <v-tooltip top>
+            <v-btn fab small class="elevation-0" slot="activator" @click="download(item.id, item.sh, item.title)">
+              <v-icon color="primary">get_app</v-icon>
+            </v-btn>
+            <span>Pobierz napisy</span>
+          </v-tooltip>
+        </v-list-tile-action>
+      </v-list-tile>
+    </v-list>
+    <v-snackbar v-model="downloaded" :timeout="2000" auto-height color="white">
+      <v-alert v-if="downloaded" :value="downloaded" color="success" icon="check_circle" outline>
+        Plik zapisano pomyślnie
+      </v-alert>
+      <v-alert v-else :value="error" color="error" icon="warning" outline>
+        {{error}}
+      </v-alert>
+    </v-snackbar>
+  </div>
 </template>
 
 <script>
@@ -29,6 +39,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      downloaded: 'download/downloaded',
       loading: 'download/loading',
       error: 'download/error'
     })

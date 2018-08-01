@@ -8,10 +8,16 @@
       </v-form>
       <v-progress-linear v-if="loading || malLoading" :indeterminate="loading || malLoading" :active="loading || malLoading" />
       <info v-if="malData && !malLoading" :mal="malData"></info>
+      <v-alert v-else :value="malError" color="error" icon="warning" outline>
+        {{malError}}
+      </v-alert>
       <div v-if="data && !loading">
         <download :animes="data.json"></download>
         <v-pagination v-model="page" :length="data.pages" :total-visible="10" @input="search(title, selected)"></v-pagination>
       </div>
+      <v-alert v-else :value="error" color="error" icon="warning" outline>
+        {{error}}
+      </v-alert>
     </v-card-text>
   </v-card>
 </template>
