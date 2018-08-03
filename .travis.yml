@@ -30,6 +30,8 @@ install:
 - npm install -g xvfb-maybe
 - yarn
 script:
+- yarn run lint
+- yarn run test
 - yarn run build:electron
 branches:
   only:

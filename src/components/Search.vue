@@ -26,8 +26,8 @@
 import * as searchActions from '../store/modules/search/actions.types'
 import * as infoActions from '../store/modules/info/actions.types'
 import { mapGetters } from 'vuex'
-import Info from '@/components/Info'
-import Download from '@/components/Download'
+import Info from '@/components/Info.vue'
+import Download from '@/components/Download.vue'
 export default {
   name: 'search',
   components: { Info, Download },

@@ -25,6 +25,8 @@ install:
   - node --version
 
 build_script:
-  - yarn build:electron
+  - yarn run lint
+  - yarn run test
+  - yarn run build:electron
 
 test: off

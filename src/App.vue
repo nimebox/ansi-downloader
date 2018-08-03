@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Systembar from '@/components/Systembar'
+import Systembar from '@/components/Systembar.vue'
 export default {
   name: 'ansi-downloader',
   components: { Systembar }
