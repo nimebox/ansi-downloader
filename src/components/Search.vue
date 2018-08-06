@@ -2,8 +2,8 @@
   <v-card>
     <v-card-text>
       <v-form v-model="valid" ref="form" lazy-validation>
-        <v-text-field label="Szukaj napisów" v-model="title" :rules="titleRules" required></v-text-field>
-        <v-select label="Jezyk tytułu" v-model="selected" :items="types" item-text="text" item-value="value" :rules="[v => !!v || 'Język tytułu jest wymagany']" required></v-select>
+        <v-text-field label="Szukaj napisów" v-model="title" :rules="titleRules" required ></v-text-field>
+        <v-select label="Jezyk tytułu" v-model="selected" :items="types" item-text="text" item-value="value" :rules="selectRules" required></v-select>
         <v-btn @click.enter="search(title, selected); info(title, selected)" outline color="primary" :disabled="!valid">Szukaj</v-btn>
       </v-form>
       <v-progress-linear v-if="loading || malLoading" :indeterminate="loading || malLoading" :active="loading || malLoading" />
@@ -35,7 +35,11 @@ export default {
     return {
       title: '',
       titleRules: [
-        v => !!v || 'Pole jest wymagane'
+        v => !!v || 'Pole jest wymagane',
+        v => /^[^\s].*/.test(v) || 'Pole nie moze być puste'
+      ],
+      selectRules: [
+        v => !!v || 'Język tytułu jest wymagany'
       ],
       types: [
         { text: 'oryginalny', value: 'org' },
@@ -61,7 +65,7 @@ export default {
   methods: {
     async search (title, selected) {
       if (this.$refs.form.validate()) {
-        await this.$store.dispatch(`search/${searchActions.FETCH_BY_NAME}`, { title: title, selected: selected, page: this.page - 1 })
+        await this.$store.dispatch(`search/${searchActions.FETCH_BY_NAME}`, { title: title.trim(), selected: selected, page: this.page - 1 })
       }
     },
     async info (title) {
