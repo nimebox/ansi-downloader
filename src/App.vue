@@ -8,26 +8,25 @@
         </v-slide-y-transition>
       </v-container>
     </v-content>
-    <v-footer fixed>
+    <v-footer fixed height="auto" class="footer">
       <v-spacer></v-spacer>
-      <v-card flat class="footer">&copy;{{ new Date().getFullYear() }} —
-        <v-tooltip top>
-          <a @click="$electron.shell.openExternal('https://github.com/xdk78')" slot="activator">xdk78</a>
-          <span>Strona autora</span>
-        </v-tooltip>
-        <v-tooltip top>
-          <v-btn fab small class="elevation-0" slot="activator" @click="$electron.shell.openExternal('https://github.com/Nimebox/ansi-downloader/issues/new')">
-            <v-icon color="primary">bug_report</v-icon>
-          </v-btn>
-          <span>Zgłoś błąd</span>
-        </v-tooltip>
-        <v-tooltip top>
-          <v-btn fab small class="elevation-0 mx-0 px-0" slot="activator" @click="$electron.shell.openExternal('https://discord.gg/CmsVk5D')">
-            <img src="./assets/discord_ico.svg" class="discord">
-          </v-btn>
-          <span>Serwer Discord</span>
-        </v-tooltip>
-      </v-card>
+      &copy;{{ new Date().getFullYear() }} —
+      <v-tooltip top>
+        <a @click="$electron.shell.openExternal('https://github.com/xdk78')" slot="activator" class="mx-1">xdk78</a>
+        <span>Strona autora</span>
+      </v-tooltip>
+      <v-tooltip top>
+        <v-btn fab small class="elevation-0 mx-0" slot="activator" @click="$electron.shell.openExternal('https://github.com/Nimebox/ansi-downloader/issues/new')">
+          <v-icon color="primary">bug_report</v-icon>
+        </v-btn>
+        <span>Zgłoś błąd</span>
+      </v-tooltip>
+      <v-tooltip top>
+        <v-btn fab small class="elevation-0 mx-0" slot="activator" @click="$electron.shell.openExternal('https://discord.gg/CmsVk5D')">
+          <img src="./assets/discord_ico.svg" class="discord">
+        </v-btn>
+        <span>Serwer Discord</span>
+      </v-tooltip>
     </v-footer>
   </v-app>
 </template>
@@ -45,16 +44,22 @@ html,
 body {
   overflow: hidden !important;
 }
+body {
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+  border-left: 1px solid rgba(0, 0, 0, 0.5);
+}
 .main-container {
   max-height: calc(100vh - 10vh);
   overflow-y: auto;
   overflow-x: auto;
 }
-.footer {
-  padding: 14px;
-}
 .discord {
   width: 24px;
   height: 24px;
+}
+.footer {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+  border-left: 1px solid rgba(0, 0, 0, 0.5);
 }
 </style>

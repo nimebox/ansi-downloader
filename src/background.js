@@ -16,7 +16,6 @@ function createMainWindow () {
   const window = new BrowserWindow({
     width: 800,
     height: 600,
-    useContentSize: true,
     frame: false,
     webPreferences: {
       webSecurity: false
