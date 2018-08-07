@@ -63,7 +63,7 @@
   },
   "main": "dist_electron/bundled/background.js",
   "build": {
-    "productName": "Ansi downloader",
+    "productName": "Ansi Downloader",
     "appId": "org.xdk78.ansi-downloader",
     "dmg": {
       "contents": [
@@ -81,13 +81,13 @@
       ]
     },
     "mac": {
-      "icon": "build/icons/ansi-logo.icns"
+      "icon": "./build/icons/icon.icns"
     },
     "win": {
-      "icon": "build/icons/ansi-logo@0.064x.ico"
+      "icon": "./build/icons/icon.ico"
     },
     "linux": {
-      "icon": "build/icons/ansi-logo@0.256x.png"
+      "icon": "./build/icons/icon.png"
     }
   }
 }
