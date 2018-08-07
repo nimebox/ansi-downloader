@@ -81,13 +81,13 @@
       ]
     },
     "mac": {
-      "icon": "build/icons/icon.icns"
+      "icon": "build/icons/ansi-logo.icns"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/ansi-logo@0.064x.ico"
     },
     "linux": {
-      "icon": "build/icons"
+      "icon": "build/icons/ansi-logo@0.256x.png"
     }
   }
 }
