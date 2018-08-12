@@ -14,8 +14,8 @@ let mainWindow
 protocol.registerStandardSchemes(['app'], { secure: true })
 function createMainWindow () {
   const window = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1152,
+    height: 720,
     frame: false,
     webPreferences: {
       webSecurity: false

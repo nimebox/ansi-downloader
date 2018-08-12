@@ -1,7 +1,7 @@
 <template>
-  <v-flex xs12>
+  <v-flex class="mx-5">
     <v-card>
-        <search />
+      <search />
     </v-card>
   </v-flex>
 </template>
