@@ -1,9 +1,4 @@
 version: '{build}'
-
-branches:
-  only:
-    - master
-
 image: Visual Studio 2017
 platform:
   - x64
