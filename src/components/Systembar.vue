@@ -1,14 +1,14 @@
 <template>
-  <v-system-bar app fixed window dark class="windowBar">
+  <v-system-bar app window class="windowBar">
     <v-subheader>ANSI DOWNLOADER</v-subheader>
     <v-spacer/>
     <v-btn small flat class="btns" @click="minimize">
       <v-icon>remove</v-icon>
     </v-btn>
     <v-btn small flat class="btns" @click="maximize">
-      <v-icon>check_box_outline_blank</v-icon>
+      <v-icon>crop_square</v-icon>
     </v-btn>
-    <v-btn small flat class="btns" @click="close">
+    <v-btn small flat class="btns" :ripple="{ class: 'red--text' }" @click="close">
       <v-icon>close</v-icon>
     </v-btn>
   </v-system-bar>
@@ -17,6 +17,11 @@
 <script>
 export default {
   name: 'systembar',
+  data () {
+    return {
+      exitColor: 'red'
+    }
+  },
   methods: {
     minimize () {
       const window = this.$electron.remote.BrowserWindow.getFocusedWindow()

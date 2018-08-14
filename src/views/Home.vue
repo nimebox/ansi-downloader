@@ -1,9 +1,7 @@
 <template>
-  <v-flex class="mx-5">
-    <v-card>
+    <v-flex>
       <search />
-    </v-card>
-  </v-flex>
+    </v-flex>
 </template>
 
 <script>

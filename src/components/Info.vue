@@ -3,13 +3,8 @@
     <v-container fluid grid-list-lg>
       <v-layout row>
 
-        <v-flex xs4>
-          <v-card-media :src="mal.picture" height="350px" contain>
-            <v-container fill-height fluid>
-              <v-layout fill-height>
-                <v-flex xs12 align-end flexbox/>
-              </v-layout>
-            </v-container>
+        <v-flex xs3>
+          <v-card-media :src="mal.picture" height="300px" contain>
           </v-card-media>
         </v-flex>
 
@@ -37,9 +32,12 @@
 
         <v-card-actions>
           <v-spacer/>
-          <v-btn flat color="primary" @click="$electron.shell.openExternal(mal.url)">
-            <v-icon>link</v-icon>
-          </v-btn>
+          <v-tooltip top color="secondary">
+            <v-btn fab small outline slot="activator" color="primary" @click="$electron.shell.openExternal(mal.url)">
+              <v-icon>open_in_browser</v-icon>
+            </v-btn>
+            <span>Owtórz link w przeglądarce</span>
+          </v-tooltip>
         </v-card-actions>
 
       </v-layout>
