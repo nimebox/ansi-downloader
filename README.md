@@ -2,6 +2,9 @@
 
 > Pobieraj napisy z animesub.info wygodniej
 
+
+<p align="center"><img alt="Preview" src="https://i.imgur.com/WKbl1E8.png"/></p>
+
 #### Build Setup
 
 ``` bash
