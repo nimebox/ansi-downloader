@@ -12,8 +12,13 @@
         {{malError}}
       </v-alert>
       <div v-if="data && !loading">
-        <download :animes="data.json"></download>
-        <v-pagination v-if="data.pages > 1" prev-icon="navigate_before" next-icon="navigate_next" v-model="page" :length="data.pages" :total-visible="10" @input="search(title, selected)"></v-pagination>
+        <div v-if="data.json">
+          <download :animes="data.json"></download>
+          <v-pagination v-if="data.pages > 1" prev-icon="navigate_before" next-icon="navigate_next" v-model="page" :length="data.pages" :total-visible="10" @input="search(title, selected)"></v-pagination>
+        </div>
+        <v-alert v-else value="true" color="info" icon="info" outline>
+          Nie znaleziono napisów
+        </v-alert>
       </div>
       <v-alert v-else :value="error" color="error" icon="warning" outline>
         {{error}}

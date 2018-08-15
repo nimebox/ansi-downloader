@@ -45,8 +45,8 @@ body {
   overflow: hidden !important;
 }
 body {
-  border-right: 1px solid rgba(0, 0, 0, 0.5);
-  border-left: 1px solid rgba(0, 0, 0, 0.5);
+  border-right: 1px solid rgba(0, 0, 0, 0.5) !important;
+  border-left: 1px solid rgba(0, 0, 0, 0.5) !important;
 }
 .main-container {
   max-height: calc(100vh - 9vh);

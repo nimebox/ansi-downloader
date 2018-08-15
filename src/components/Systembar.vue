@@ -46,6 +46,9 @@ export default {
 <style scoped>
 .windowBar {
   -webkit-app-region: drag;
+  border-top: 1px solid rgba(0, 0, 0, 0.5) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.5) !important;
+  border-left: 1px solid rgba(0, 0, 0, 0.5) !important;
 }
 
 .btns {
